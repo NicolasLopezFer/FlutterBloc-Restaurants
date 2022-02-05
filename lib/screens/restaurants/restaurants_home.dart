@@ -118,6 +118,11 @@ class _RestaurantsHomeState extends State<RestaurantsHome> {
             Text('Restaurante1'),
             Text('Restaurante1'),
             Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
           ],
         ),
       );
