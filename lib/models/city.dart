@@ -1,20 +1,22 @@
-//TODO: REVISAR
-
 class City {
-  final String name;
-  final String email;
+  final String cityName;
+  final String lat;
+  final String lon;
 
   City({
-    required this.name,
-    required this.email,
+    required this.cityName,
+    required this.lat,
+    required this.lon,
   });
 
   City copyWith({
-    String? name,
-    String? email,
+    String? cityName,
+    String? lat,
+    String? lon,
   }) =>
       City(
-        name: name ?? this.name,
-        email: email ?? this.email,
+        cityName: cityName ?? this.cityName,
+        lat: lat ?? this.lat,
+        lon: lon ?? this.lon,
       );
 }

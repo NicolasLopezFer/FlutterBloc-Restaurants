@@ -1,17 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurants_test/bloc/city/city_bloc.dart';
 
-class RestaurantsHome extends StatelessWidget {
+import '../../widgets/text_form_field_custom.dart';
+
+class RestaurantsHome extends StatefulWidget {
   const RestaurantsHome({Key? key}) : super(key: key);
+
+  @override
+  State<RestaurantsHome> createState() => _RestaurantsHomeState();
+}
+
+class _RestaurantsHomeState extends State<RestaurantsHome> {
+  String cityName = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Busca restaurantes'),
+        backgroundColor: Colors.red,
       ),
-      body: Center(
-        child: Text('Abre'),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        child: Column(
+          children: [
+            _createCityField(),
+            Flexible(
+              flex: 2,
+              child: Text('Textfield'),
+            ),
+          ],
+        ),
       ),
     );
+  }
+
+  _createCityField() {
+    return BlocBuilder<CityBloc, CityState>(builder: (_, state) {
+      return TextFormFieldCustom(
+        hintText: 'Correo',
+        onChanged: (String value) {
+          cityName = value;
+
+          // bloc.add(ChangeCredentials(emailField, passwordField,
+          //     state.validEmail, state.validPassword, ''));
+        },
+      );
+    });
   }
 }
