@@ -23,9 +23,18 @@ class CityBloc extends Bloc<CityEvent, CityState> {
         },
       );
 
-      print(res);
+      if (res['success'] == false) {
+        return;
+      }
+      ;
 
-      //Emit the new city with lat lon
+      City newCity = City(
+        cityName: res['standard']['city'],
+        lat: res['latt'],
+        lon: res['longt'],
+      );
+
+      emit(SetCityState(newCity));
     });
   }
 }

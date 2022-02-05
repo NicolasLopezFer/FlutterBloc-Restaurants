@@ -31,6 +31,19 @@ class _RestaurantsHomeState extends State<RestaurantsHome> {
           children: [
             _createCityField(cityBloc),
             _createCityButton(cityBloc),
+            SizedBox(height: 10),
+            BlocBuilder<CityBloc, CityState>(builder: (_, state) {
+              if (state.city == null) {
+                return SizedBox();
+              }
+
+              if (state.city!.lat == '' && state.city!.lon == '') {
+                return SizedBox();
+              }
+
+              return Text(
+                  'Restaurantes de la ciudad: ${state.city!.cityName}, en lat: ${state.city!.lat} y long: ${state.city!.lon}');
+            }),
             _createRestaurantList(restaurantBloc),
           ],
         ),
@@ -68,11 +81,45 @@ class _RestaurantsHomeState extends State<RestaurantsHome> {
 
   _createRestaurantList(RestaurantBloc restaurantBloc) {
     return BlocBuilder<RestaurantBloc, RestaurantState>(builder: (_, state) {
-      return TextFormFieldCustom(
-        hintText: 'Ciudad',
-        onChanged: (String value) {
-          cityName = value;
-        },
+      return Expanded(
+        child: ListView(
+          children: [
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+            Text('Restaurante1'),
+          ],
+        ),
       );
     });
   }
