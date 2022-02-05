@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "1023241153778",
+    "project_id": "restaurants-tyba",
+    "storage_bucket": "restaurants-tyba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1023241153778:android:582d115db6c52080aa346b",
+        "android_client_info": {
+          "package_name": "com.example.restaurants_test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1023241153778-ermvrbqjg6dsl0o9up6ua91a85b1btnr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2pPBivuxbEUj28d5WZFdJ-4oJQ8Q4Bto"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1023241153778-ermvrbqjg6dsl0o9up6ua91a85b1btnr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1023241153778:android:477097d4af4bac3baa346b",
+        "android_client_info": {
+          "package_name": "com.restaurants.tyba"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1023241153778-ermvrbqjg6dsl0o9up6ua91a85b1btnr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2pPBivuxbEUj28d5WZFdJ-4oJQ8Q4Bto"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1023241153778-ermvrbqjg6dsl0o9up6ua91a85b1btnr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

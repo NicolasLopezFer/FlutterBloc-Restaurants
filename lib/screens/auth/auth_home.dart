@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurants_test/screens/auth/login.dart';
 import 'package:restaurants_test/screens/auth/register.dart';
+
+import '../../bloc/user/user_bloc.dart';
 
 class HomeAuth extends StatelessWidget {
   const HomeAuth({Key? key}) : super(key: key);
@@ -53,6 +56,8 @@ class HomeAuth extends StatelessWidget {
                       onSurface: Colors.grey,
                     ),
                     onPressed: () {
+                      BlocProvider.of<UserBloc>(context).add(InitialUser());
+
                       Navigator.push(
                         context,
                         MaterialPageRoute(

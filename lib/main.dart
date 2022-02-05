@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurants_test/bloc/city/city_bloc.dart';
 import 'package:restaurants_test/bloc/restaurant/restaurant_bloc.dart';
 import 'package:restaurants_test/bloc/user/user_bloc.dart';
-import 'package:restaurants_test/screens/auth/home_auth.dart';
+import 'package:restaurants_test/screens/home/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const HomeAuth(),
+        home: const HomeScreen(),
       ),
     );
   }
