@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurants_test/bloc/city/city_bloc.dart';
+import 'package:restaurants_test/bloc/restaurant/restaurant_bloc.dart';
 
 import '../../widgets/text_form_field_custom.dart';
 
@@ -16,6 +17,9 @@ class _RestaurantsHomeState extends State<RestaurantsHome> {
 
   @override
   Widget build(BuildContext context) {
+    final cityBloc = BlocProvider.of<CityBloc>(context);
+    final restaurantBloc = BlocProvider.of<RestaurantBloc>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Busca restaurantes'),
@@ -25,26 +29,49 @@ class _RestaurantsHomeState extends State<RestaurantsHome> {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: Column(
           children: [
-            _createCityField(),
-            Flexible(
-              flex: 2,
-              child: Text('Textfield'),
-            ),
+            _createCityField(cityBloc),
+            _createCityButton(cityBloc),
+            _createRestaurantList(restaurantBloc),
           ],
         ),
       ),
     );
   }
 
-  _createCityField() {
+  _createCityField(CityBloc cityBloc) {
     return BlocBuilder<CityBloc, CityState>(builder: (_, state) {
       return TextFormFieldCustom(
-        hintText: 'Correo',
+        hintText: 'Ciudad',
         onChanged: (String value) {
           cityName = value;
+        },
+      );
+    });
+  }
 
-          // bloc.add(ChangeCredentials(emailField, passwordField,
-          //     state.validEmail, state.validPassword, ''));
+  _createCityButton(CityBloc cityBloc) {
+    return Container(
+      width: double.infinity,
+      child: TextButton(
+        child: Text('Buscar restaurantes'),
+        style: TextButton.styleFrom(
+          primary: Colors.white,
+          backgroundColor: Colors.red,
+          onSurface: Colors.grey,
+        ),
+        onPressed: () async {
+          cityBloc.add(SetCity(newNameCity: cityName));
+        },
+      ),
+    );
+  }
+
+  _createRestaurantList(RestaurantBloc restaurantBloc) {
+    return BlocBuilder<RestaurantBloc, RestaurantState>(builder: (_, state) {
+      return TextFormFieldCustom(
+        hintText: 'Ciudad',
+        onChanged: (String value) {
+          cityName = value;
         },
       );
     });
