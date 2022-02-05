@@ -24,22 +24,49 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   }
 
   void _onLoginUser(LoginUser event, emit) async {
-    fbAuth.UserCredential userCredential = await fbAuth.FirebaseAuth.instance
-        .signInWithEmailAndPassword(
-            email: event.email, password: event.password);
+    try {
+      fbAuth.UserCredential userCredential =
+          await fbAuth.FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: event.email,
+        password: event.password,
+      );
 
-    print('PENDIENTE');
-    print(userCredential);
+      User newUser = User(email: userCredential.user!.email!);
+
+      emit(UserLoginState(newUser));
+    } on fbAuth.FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        emit(UserChangeCredentials(
+            '', false, '', false, 'No existe un usuario para ese correo'));
+      } else if (e.code == 'wrong-password') {
+        emit(UserChangeCredentials(
+            event.email, true, '', false, 'Contraseña incorrecta'));
+      }
+    }
   }
 
   void _onRegisterUser(RegisterUser event, emit) async {
-    fbAuth.UserCredential userCredential = await fbAuth.FirebaseAuth.instance
-        .createUserWithEmailAndPassword(
-            email: event.email, password: event.password);
+    try {
+      fbAuth.UserCredential userCredential =
+          await fbAuth.FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: event.email,
+        password: event.password,
+      );
 
-    User newUser = User(email: userCredential.user!.email!);
+      User newUser = User(email: userCredential.user!.email!);
 
-    emit(UserLoginState(newUser));
+      emit(UserLoginState(newUser));
+    } on fbAuth.FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        emit(UserChangeCredentials(
+            event.email, true, '', false, 'La contraseña es muy corta'));
+      } else if (e.code == 'email-already-in-use') {
+        emit(UserChangeCredentials('', false, event.password, true,
+            'El correo ingresado ya existe en el sistema'));
+      }
+    } catch (e) {
+      print(e);
+    }
   }
 
   void _onLogoutUser(LogoutUser event, emit) {}
@@ -49,6 +76,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     bool valPassword = validatePassword(event.password);
 
     emit(UserChangeCredentials(
-        event.email, valEmail, event.password, valPassword));
+        event.email, valEmail, event.password, valPassword, ''));
   }
 }

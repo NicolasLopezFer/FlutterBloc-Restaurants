@@ -24,5 +24,17 @@ class ChangeCredentials extends UserEvent {
   final String password;
   final bool valEmail;
   final bool valPassword;
-  ChangeCredentials(this.email, this.password, this.valEmail, this.valPassword);
+  final String errorMessage;
+  ChangeCredentials(
+    this.email,
+    this.password,
+    this.valEmail,
+    this.valPassword,
+    this.errorMessage,
+  );
+}
+
+class ChangeErrorMessage extends UserEvent {
+  final String errorMessage;
+  ChangeErrorMessage(this.errorMessage);
 }

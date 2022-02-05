@@ -7,6 +7,7 @@ abstract class UserState {
   final String password;
   final bool validEmail;
   final bool validPassword;
+  final String errorMessage;
   final User? user;
 
   const UserState({
@@ -16,6 +17,7 @@ abstract class UserState {
     this.validEmail = false,
     this.validPassword = false,
     this.user,
+    this.errorMessage = '',
   });
 }
 
@@ -44,14 +46,18 @@ class UserChangeCredentials extends UserState {
   final bool validEmail;
   final String password;
   final bool validPassword;
+  final String errorMessage;
   const UserChangeCredentials(
     this.email,
     this.validEmail,
     this.password,
     this.validPassword,
+    this.errorMessage,
   ) : super(
-            email: email,
-            validEmail: validEmail,
-            password: password,
-            validPassword: validPassword);
+          email: email,
+          validEmail: validEmail,
+          password: password,
+          validPassword: validPassword,
+          errorMessage: errorMessage,
+        );
 }
